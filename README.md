@@ -3,7 +3,13 @@
 ## Overview
 
 QPair is an iOS application developed in Swift, designed to demonstrate the pairing workflow for COSMED Q Bluetooth LE peripherals.
-The app is built using Swift and leverages the CoreBluetooth framework for all Bluetooth interactions.
+The necessity came up because, while Windows and Android provide a programmatic way to initiate pairing with the desired security level (without going into Settings), iOS handles this differently.
+The CoreBluetooth framework does not have the ability to initiate pairing—this process is managed exclusively by iOS.  
+A programmatic way to force iOS to start pairing is to connect to the device and attempt to access an encrypted characteristic.  
+Therefore, in Q firmware version **1.0-rc15**, I have encrypted the following characteristics of the **CSS service** (UUID: `b381fcca-142a-4b9b-ba1f-af6a3ea715c7`):  
+
+- **CSS Spirometer Measurement Characteristic Value** (`b3810001-142a-4b9b-ba1f-af6a3ea715c7`)  
+- **CSS Environment Measurement Characteristic Value** (`b3810002-142a-4b9b-ba1f-af6a3ea715c7`) 
 
 ## Key Features
 
@@ -27,7 +33,7 @@ The app interacts with the following GATT elements:
 
 ### App Icon and App Color
 
-WIP
+The app icon is the standard company logo with black background.
 
 ### Landscape Mode
 
@@ -37,7 +43,11 @@ WIP
 
 1.  Clone the repository.
 2.  Open the Xcode project.
-3.  Build and run the app on an iOS device.
+3.  Build, install and run the app on an iOS physical device.
+4.  Eansure the Q Spirometer is powered-on and in range
+5.  Tap on Q Spirometer label
+6.  Confirm pairing by clicking pushbutton on Q
+7.  Confirm pairing on iOS alert popup
 
 ## Author
 
